@@ -47,7 +47,9 @@ func readIncomingFile(path string) (*ach.File, error) {
 		return file, nil
 	}
 	file, err = readACHFile(path)
-	if file != nil && err == nil {
+	// Ignore validation errors
+	// if file != nil && err == nil {
+	if file != nil {
 		return file, nil
 	}
 	return nil, fmt.Errorf("unable to read %s:\n %v", path, err)
